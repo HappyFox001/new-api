@@ -211,7 +211,7 @@ const LoginForm = () => {
       onGitHubOAuthClicked(status.github_client_id);
     } finally {
       // 由于重定向，这里不会执行到，但为了完整性添加
-      setTimeout(() => setGithubLoading(false), 3000);
+      setTimeout(() => setGithubLoading(false), 8000);
     }
   };
 
@@ -225,7 +225,7 @@ const LoginForm = () => {
       );
     } finally {
       // 由于重定向，这里不会执行到，但为了完整性添加
-      setTimeout(() => setOidcLoading(false), 3000);
+      setTimeout(() => setOidcLoading(false), 8000);
     }
   };
 
@@ -236,7 +236,7 @@ const LoginForm = () => {
       onLinuxDOOAuthClicked(status.linuxdo_client_id);
     } finally {
       // 由于重定向，这里不会执行到，但为了完整性添加
-      setTimeout(() => setLinuxdoLoading(false), 3000);
+      setTimeout(() => setLinuxdoLoading(false), 8000);
     }
   };
 

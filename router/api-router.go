@@ -170,5 +170,20 @@ func SetApiRouter(router *gin.Engine) {
 			taskRoute.GET("/self", middleware.UserAuth(), controller.GetUserTask)
 			taskRoute.GET("/", middleware.AdminAuth(), controller.GetAllTask)
 		}
+
+		// Auto token management routes - for external system integration
+		autoTokenRoute := apiRouter.Group("/auto-token")
+		{
+			// Create token automatically (no authentication required for external systems)
+			autoTokenRoute.POST("/create", controller.AutoCreateToken)
+			// Update token quota by token ID (no authentication required for external systems)
+			autoTokenRoute.PUT("/quota", controller.UpdateTokenQuota)
+			// Update token quota by API key (no authentication required for external systems)
+			autoTokenRoute.PUT("/quota-by-key", controller.UpdateTokenQuotaByKey)
+			// Add quota to existing token (no authentication required for external systems)
+			autoTokenRoute.POST("/add-quota", controller.AddTokenQuota)
+			// Get token information by API key (no authentication required for external systems)
+			autoTokenRoute.POST("/info", controller.GetTokenInfo)
+		}
 	}
 }

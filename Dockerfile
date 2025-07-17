@@ -29,6 +29,6 @@ RUN apk upgrade --no-cache \
     && update-ca-certificates
 
 COPY --from=builder2 /build/one-api /
-EXPOSE 3000
+EXPOSE 8000
 WORKDIR /data
 ENTRYPOINT ["/one-api"]

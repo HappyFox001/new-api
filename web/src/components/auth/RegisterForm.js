@@ -194,7 +194,7 @@ const RegisterForm = () => {
     try {
       onGitHubOAuthClicked(status.github_client_id);
     } finally {
-      setTimeout(() => setGithubLoading(false), 3000);
+      setTimeout(() => setGithubLoading(false), 8000);
     }
   };
 
@@ -206,7 +206,7 @@ const RegisterForm = () => {
         status.oidc_client_id
       );
     } finally {
-      setTimeout(() => setOidcLoading(false), 3000);
+      setTimeout(() => setOidcLoading(false), 8000);
     }
   };
 
@@ -215,7 +215,7 @@ const RegisterForm = () => {
     try {
       onLinuxDOOAuthClicked(status.linuxdo_client_id);
     } finally {
-      setTimeout(() => setLinuxdoLoading(false), 3000);
+      setTimeout(() => setLinuxdoLoading(false), 8000);
     }
   };
 

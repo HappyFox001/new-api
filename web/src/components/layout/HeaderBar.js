@@ -140,7 +140,7 @@ const HeaderBar = () => {
     fireworks.start();
     setTimeout(() => {
       fireworks.stop();
-    }, 3000);
+    }, 8000);
   };
 
   const handleNoticeOpen = () => {

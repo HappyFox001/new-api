@@ -130,7 +130,7 @@ const ChannelsTable = () => {
           {time}
         </Tag>
       );
-    } else if (responseTime <= 3000) {
+    } else if (responseTime <= 8000) {
       return (
         <Tag size='large' color='lime' shape='circle'>
           {time}

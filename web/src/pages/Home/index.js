@@ -89,7 +89,7 @@ const Home = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setEndpointIndex((prev) => (prev + 1) % endpointItems.length);
-    }, 3000);
+    }, 8000);
     return () => clearInterval(timer);
   }, [endpointItems.length]);
 

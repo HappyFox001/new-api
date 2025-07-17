@@ -827,3 +827,23 @@ func RootUserExists() bool {
 	}
 	return true
 }
+
+// ValidateUserCredentials validates username and password, returns user if valid
+func ValidateUserCredentials(username, password string) *User {
+	if username == "" || password == "" {
+		return nil
+	}
+	
+	var user User
+	err := DB.Where("username = ?", username).First(&user).Error
+	if err != nil {
+		return nil
+	}
+	
+	// Validate password
+	if !common.ValidatePasswordAndHash(password, user.Password) {
+		return nil
+	}
+	
+	return &user
+}

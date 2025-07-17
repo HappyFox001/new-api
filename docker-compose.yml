@@ -2,12 +2,14 @@ version: '3.4'
 
 services:
   new-api:
-    image: calciumion/new-api:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: new-api
     restart: always
-    command: --log-dir /app/logs
+    command: --log-dir /app/logs --port 8000
     ports:
-      - "3000:3000"
+      - "8000:8000"
     volumes:
       - ./data:/data
       - ./logs:/app/logs
@@ -15,9 +17,10 @@ services:
       - SQL_DSN=root:123456@tcp(mysql:3306)/new-api  # Point to the mysql service
       - REDIS_CONN_STRING=redis://redis
       - TZ=Asia/Shanghai
-      - ERROR_LOG_ENABLED=true # 是否启用错误日志记录
-    #      - STREAMING_TIMEOUT=120  # 流模式无响应超时时间，单位秒，默认120秒，如果出现空补全可以尝试改为更大值
-    #      - SESSION_SECRET=random_string  # 多机部署时设置，必须修改这个随机字符串！！！！！！！
+      - ERROR_LOG_ENABLED=true # Enable error logging
+      - PORT=8000 # Set application port to 8000
+    #      - STREAMING_TIMEOUT=120  # Stream mode timeout in seconds, default 120s
+    #      - SESSION_SECRET=random_string  # Set for multi-machine deployment, must change this random string!!!
     #      - NODE_TYPE=slave  # Uncomment for slave node in multi-node deployment
     #      - SYNC_FREQUENCY=60  # Uncomment if regular database syncing is needed
     #      - FRONTEND_BASE_URL=https://openai.justsong.cn  # Uncomment for multi-node deployment with front-end URL
@@ -26,7 +29,7 @@ services:
       - redis
       - mysql
     healthcheck:
-      test: ["CMD-SHELL", "wget -q -O - http://localhost:3000/api/status | grep -o '\"success\":\\s*true' | awk -F: '{print $$2}'"]
+      test: ["CMD-SHELL", "wget -q -O - http://localhost:8000/api/status | grep -o '\"success\":\\s*true' | awk -F: '{print $$2}'"]
       interval: 30s
       timeout: 10s
       retries: 3

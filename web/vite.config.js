@@ -1,7 +1,6 @@
 import react from '@vitejs/plugin-react';
 import { defineConfig, transformWithEsbuild } from 'vite';
-import pkg from '@douyinfe/vite-plugin-semi';
-const { vitePluginSemi } = pkg;
+// Removed vite-plugin-semi import
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -21,10 +20,8 @@ export default defineConfig({
         });
       },
     },
-    react(),
-    vitePluginSemi({
-      cssLayer: true
-    })
+    react()
+    // Removed vitePluginSemi
   ],
   optimizeDeps: {
     force: true,
@@ -63,15 +60,15 @@ export default defineConfig({
     host: '0.0.0.0',
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'http://localhost:8000',
         changeOrigin: true,
       },
       '/mj': {
-        target: 'http://localhost:3000',
+        target: 'http://localhost:8000',
         changeOrigin: true,
       },
       '/pg': {
-        target: 'http://localhost:3000',
+        target: 'http://localhost:8000',
         changeOrigin: true,
       },
     },

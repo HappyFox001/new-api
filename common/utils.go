@@ -211,8 +211,8 @@ func MessageWithRequestId(message string, id string) string {
 }
 
 func RandomSleep() {
-	// Sleep for 0-3000 ms
-	time.Sleep(time.Duration(rand.Intn(3000)) * time.Millisecond)
+	// Sleep for 0-8000 ms
+	time.Sleep(time.Duration(rand.Intn(8000)) * time.Millisecond)
 }
 
 func GetPointer[T any](v T) *T {
